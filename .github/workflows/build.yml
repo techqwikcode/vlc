@@ -19,13 +19,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # <-- Yahan 18 ki jagah 22 kar diya hai
+          node-version: '22' 
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21' # <-- Yahan 17 ki jagah ab 21 kar diya hai
 
       - name: Install Dependencies
         run: npm install
