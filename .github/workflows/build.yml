@@ -5,21 +5,25 @@ on:
     branches:
       - main
 
+# GitHub ko naya Node.js 24 use karne ke liye force karne wali line:
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4  # Updated to v4
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # Updated to v4
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '18' # Yeh aapke app ke liye hai, Actions ke internal Node ke liye nahi
 
-      - name: Setup Java (Android ke liye zaroori hai)
-        uses: actions/setup-java@v4  # Updated to v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -40,7 +44,7 @@ jobs:
           ./gradlew assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4  # Updated to v4
+        uses: actions/upload-artifact@v4
         with:
           name: my-react-app-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
